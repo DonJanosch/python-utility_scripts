@@ -7,23 +7,23 @@ def _walk(path,rootPath=None,getFileNumberBelow=False):
             folders.append(DirDic.path)
         else:
             files.append(DirDic.name)
-    
+
     files_in_folder = len(files)
     files_below = 0
-    
+
     dict_object = {'_files_':files}
     dict_object['_subDirectories_'] = folders
-    
+
     for folder in folders:
         if rootPath == None:
-            num_files_from_subfolder, dict_object[folder.split(path)[1]] = _walk(folder,path,getFileNumberBelow=True) 
+            num_files_from_subfolder, dict_object[folder.split(path)[1]] = _walk(folder,path,getFileNumberBelow=True)
         else:
             num_files_from_subfolder, dict_object[folder.split(rootPath)[1]] = _walk(folder,path,getFileNumberBelow=True)
         files_below += num_files_from_subfolder
     num_files_in_branch = files_in_folder + files_below
-    
+
     dict_object['_numFilesInBranch_'] = num_files_in_branch
-    
+
     if getFileNumberBelow:
         return (num_files_in_branch, dict_object)
     else:
@@ -40,12 +40,12 @@ def create_index():
         'scanTimeUnix':int(time.time()),
         'scanResult': {
             '.':_walk(rootPath),
-        }        
-    }   
-    print(f'Now: Writing the Results to file, see: {resultsFileName}')
+        }
+    }
+    print(f'Now: Writing the Results to file, see: \n{resultsFileName}\nCan be viewed in a browser.')
     with open(resultsFileName,'w') as f:
         json.dump(indexObject,f)
-    
+
     print('All Done!')
 
 print('Creating a JSON-file listing all Documents found recursively starting from the root-directory.')
