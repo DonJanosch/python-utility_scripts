@@ -17,10 +17,10 @@ def _walk(path,rootPath=None,getFileNumberBelow=False):
     dict_object['_subDirectories_'] = folders
 
     for folder in folders:
+        searchPath = path
         if rootPath == None:
-            num_files_from_subfolder, dict_object[folder.split(path)[1]] = _walk(folder,path,getFileNumberBelow=True)
-        else:
-            num_files_from_subfolder, dict_object[folder.split(rootPath)[1]] = _walk(folder,path,getFileNumberBelow=True)
+            searchPath = rootPath
+        num_files_from_subfolder, dict_object[folder.split(searchPath)[1]] = _walk(folder,path,getFileNumberBelow=True)
         files_below += num_files_from_subfolder
     num_files_in_branch = files_in_folder + files_below
 
