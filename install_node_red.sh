@@ -1,4 +1,5 @@
 apt update && apt upgrade -y
+apt install git curl
 bash <(curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered)
 systemctl enable nodered.service
 git clone https://github.com/DonJanosch/node-red-flows.git .
