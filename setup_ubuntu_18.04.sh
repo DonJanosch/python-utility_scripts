@@ -1,5 +1,5 @@
 sudo apt update
-sudo apt install software-properties-common curl flatpak -y
+sudo apt install software-properties-common curl wget flatpak -y
 
 cd ~/Downloads
 sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
