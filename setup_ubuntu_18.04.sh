@@ -14,7 +14,7 @@ sudo add-apt-repository -y ppa:projectatomic/ppa
 sudo apt update
 snap install postman
 snap install atom --classic
-sudo apt install podman nordvpn mate-desktop-environment git python3.7 google-chrome-stable opera-stable -y
+sudo apt install podman nordvpn mate-desktop-environment git python3.7 google-chrome-stable opera-stable torbrowser-launcher -y
 
 curl https://get.docker.com | sudo bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
