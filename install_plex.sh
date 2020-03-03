@@ -16,5 +16,9 @@ echo "Installing PLEX Server..."
 sudo apt-get install plexmediaserver
 
 echo "Adapting settings of PLEX Server for pi and restarting the service..."
-sed -i -e 's/PLEX_MEDIA_SERVER_USER=plex/PLEX_MEDIA_SERVER_USER=pi/g' /etc/default/plexmediaserver.prev
+sudo mkdir -p /home/pi/plexmedia
+sudo chown -R plex: /home/pi/plexmedia
 sudo service plexmediaserver restart
+
+echo "All Done, PLEX is up and running. Visite http://$(hostname -I | cut -d' ' -f1):32400/web"
+echo "Mount the NAS to /home/pi/plexmedia by entering it to /etc/fstab"
