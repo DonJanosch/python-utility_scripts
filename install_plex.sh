@@ -2,7 +2,7 @@ echo "**** INSTALLING PLEX MEDIA SERVER ON RASPBERRY PI ****"
 
 echo "Updating System..."
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get upgrade -y
 
 echo "Installing https-transport..."
 sudo apt-get install apt-transport-https 
