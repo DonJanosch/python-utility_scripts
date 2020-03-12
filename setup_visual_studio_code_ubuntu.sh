@@ -6,10 +6,10 @@ SETTINGS_FILENAME=settings.json
 echo "##SCRIPT FOR INSTALLING VSCode WITH EXTENSIONS##"
 prompt=$(sudo -nv 2>&1)
 if [ $(id -u) = 0 ]; then
-   echo "Cant run this script as root. Change user first." 
+   echo "Cant run this script as root. Change user first. Aborting script-execution..." 
    return 0
 elif ! [ $? -eq 0  || echo $prompt | grep -q '^sudo:' ]; then
-  echo "The current user needs sudo permissions for this script to work."
+  echo "The current user needs sudo permissions for this script to work. Aborting script-execution..."
   return 0
 fi
 
