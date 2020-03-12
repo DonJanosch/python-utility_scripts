@@ -3,9 +3,12 @@ SETTINGS_PATH=$HOME/.config/Code/User/
 SETTINGS_FILENAME=settings.json
 
 # Scipt body
-pkgs='code'
-if ! dpkg -s $pkgs >/dev/null 2>&1;
-then
+echo "##SCRIPT FOR INSTALLING VSCode WITH EXTENSIONS##"
+if [ $(id -u) = 0 ]; then
+   echo "Cant run this script as root. Change user first." 
+   return 0
+fi
+if ! 'code' -s $pkgs >/dev/null 2>&1;then
     echo "Installing VisualStudio Code on Ubuntu for Jan Macenka"
     sudo snap install --classic code # or code-insiders
 else
