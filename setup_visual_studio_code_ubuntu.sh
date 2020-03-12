@@ -12,7 +12,7 @@ then
     sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
     sudo apt-get install apt-transport-https
     sudo apt-get update
-    sudo apt-get install code
+    sudo apt-get install code -y
 else
     echo "VisualStudio Code seems to be installed already."
 fi
