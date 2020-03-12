@@ -9,11 +9,16 @@ prompt=$(sudo -nv 2>&1)
 if [ $(id -u) = 0 ]; then
    echo "Cant run this script as root. Change user first. Aborting script-execution..." 
    return 0
-elif ! [ $? -eq 0  || echo $prompt | grep -q '^sudo:' ]; then
+fi 
+prompt=$(sudo -nv 2>&1)
+if [ $? -eq 0 ]; then
+   echo "Checking: Sudo-Permissions avaliable."
+elif echo $prompt | grep -q '^sudo:'; then
+   echo "Checking: Sudo-Permissions avaliable."
+else
   echo "The current user needs sudo permissions for this script to work. Aborting script-execution..."
   return 0
 fi
-
 if ! 'code' -s $pkgs >/dev/null 2>&1;then
     echo "Installing VisualStudio Code on Ubuntu for Jan Macenka"
     sudo snap install --classic code # or code-insiders
