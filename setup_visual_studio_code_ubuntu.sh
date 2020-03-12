@@ -4,10 +4,15 @@ SETTINGS_FILENAME=settings.json
 
 # Scipt body
 echo "##SCRIPT FOR INSTALLING VSCode WITH EXTENSIONS##"
+prompt=$(sudo -nv 2>&1)
 if [ $(id -u) = 0 ]; then
    echo "Cant run this script as root. Change user first." 
    return 0
+elif ! [ $? -eq 0  || echo $prompt | grep -q '^sudo:' ]; then
+  echo "The current user needs sudo permissions for this script to work."
+  return 0
 fi
+
 if ! 'code' -s $pkgs >/dev/null 2>&1;then
     echo "Installing VisualStudio Code on Ubuntu for Jan Macenka"
     sudo snap install --classic code # or code-insiders
