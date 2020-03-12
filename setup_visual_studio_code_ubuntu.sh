@@ -1,3 +1,4 @@
+#!/bin/sh
 # Script Settings
 SETTINGS_PATH=$HOME/.config/Code/User/
 SETTINGS_FILENAME=settings.json
