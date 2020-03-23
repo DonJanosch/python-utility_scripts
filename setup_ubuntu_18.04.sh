@@ -1,20 +1,23 @@
 sudo apt update
-sudo apt install software-properties-common curl wget flatpak -y
+sudo apt install apt-transport-https software-properties-common curl wget flatpak -y
 
 cd ~/Downloads
 sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
 sudo dpkg -i ~/Downloads/nordvpn-release_1.0.0_all.deb
 sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
 sudo add-apt-repository -y ppa:projectatomic/ppa
+curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
 sudo apt update
 snap install postman
-snap install atom --classic
-sudo apt install podman nordvpn mate-desktop-environment git google-chrome-stable opera-stable torbrowser-launcher -y
+sudo apt install brave-browser podman nordvpn mate-desktop-environment git google-chrome-stable opera-stable torbrowser-launcher -y
 
 curl https://get.docker.com | sudo bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
+
+curl https://raw.githubusercontent.com/jmacenka/utility-scripts/master/setup_visual_studio_code_ubuntu.sh | sh
 
 sudo apt update
 sudo apt upgrade -y
