@@ -1,5 +1,5 @@
 sudo apt update
-sudo apt install apt-transport-https software-properties-common curl wget flatpak -y
+sudo apt install apt-transport-https software-properties-common curl wget flatpak python3-pip -y
 
 cd ~/Downloads
 sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
