@@ -7,7 +7,7 @@ echo "Script for installing Docker CE and Portainer to a Debian like Ubuntu 18.0
 
 # Instaling Docker
 # First, update your existing list of packages:
-sudo apt update
+sudo apt update && sudo apt upgrade -y
 # Next, install a few prerequisite packages which let apt use packages over HTTPS:
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 # Then add the GPG key for the official Docker repository to your system:
@@ -27,6 +27,8 @@ docker volume create portainer_data
 docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 
 # Final messages
+echo ""
+echo "*************************"
 echo "This is not a production great script! It will leave your installation vurnerable as it will not take care of any security precautions!"
 if [ $(id -u) = 0 ]; then
    echo "I have detected that u installed this script as ROOT-User which is a bad idea! This is only a test setup. Go talk to your trusted IoT-advisor of choice!" 
