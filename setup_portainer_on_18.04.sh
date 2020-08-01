@@ -3,10 +3,6 @@
 
 # Scipt body
 # Information
-if [ $(id -u) = 0 ]; then
-   echo "For security reasons dont run this scipt as root. Create another user and add him to sudoers for that purpous and restart the script." 
-   return 0
-fi
 echo "Script for installing Docker CE and Portainer to a Debian like Ubuntu 18.04"
 echo "This is not a production great script! It will leave your installation vurnerable as it will not take care of any security precautions!"
 
@@ -14,7 +10,7 @@ echo "This is not a production great script! It will leave your installation vur
 # First, update your existing list of packages:
 sudo apt update
 # Next, install a few prerequisite packages which let apt use packages over HTTPS:
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 # Then add the GPG key for the official Docker repository to your system:
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 # Add the Docker repository to APT sources:
@@ -29,3 +25,9 @@ sudo usermod -aG docker ${USER}
 docker volume create portainer_data
 # Deploy portainer
 docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+
+if [ $(id -u) = 0 ]; then
+   echo "I have detected that u installed this script as ROOT-User which is a bad idea! This is only a test setup. Go talk to your trusted IoT-advisor of choice!" 
+fi
+
+echo "All Done, Portainer is up and running. Visite http://$(hostname -I | cut -d' ' -f1):9000"
