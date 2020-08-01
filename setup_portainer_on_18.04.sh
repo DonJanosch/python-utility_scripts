@@ -9,15 +9,15 @@ echo "Script for installing Docker CE and Portainer to a Debian like Ubuntu 18.0
 # First, update your existing list of packages:
 sudo apt update
 # Next, install a few prerequisite packages which let apt use packages over HTTPS:
-sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 # Then add the GPG key for the official Docker repository to your system:
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 # Add the Docker repository to APT sources:
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 # Next, update the package database with the Docker packages from the newly added repo:
-sudo apt update
+sudo apt update -y
 # Finally, install Docker:
-sudo apt install -y docker-ce
+sudo apt install docker-ce -y
 # Adding current user to docker group
 sudo usermod -aG docker ${USER}
 # Install portainer
