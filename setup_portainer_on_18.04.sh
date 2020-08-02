@@ -1,8 +1,14 @@
 #!/bin/sh
 # Script Settings
+#No variables required in this script
 
 # Scipt body
-# Information
+# INFORMATION
+# This script may look more impressing than it is. I just googled "how to install Docker on 18.04" and "how to deploy Portainer"
+# Here I foud these results "https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04" and "https://portainer.readthedocs.io/en/stable/deployment.html"
+# Then I literally just Copy&Pasted the tutorials there into this unified shell-script and uploaded it to GitHub for easy access and added some comment lines... thats it.
+# Everyone whith experience in IT, especially OpenSource and/or Linux should be able to do the same. Thats no special skill. Combined with an engineering-
+# spirit and the general ability to read thats all you need ;-) Go ask the Linux and/or IoT Comunity for help. They are great!
 echo "Script for installing Docker CE and Portainer to a Debian like Ubuntu 18.04"
 
 # Instaling Docker
@@ -20,6 +26,7 @@ sudo apt update -y
 sudo apt install docker-ce -y
 # Adding current user to docker group
 sudo usermod -aG docker ${USER}
+
 # Install portainer
 # Prepare portainer
 docker volume create portainer_data
