@@ -9,6 +9,7 @@
 # Then I literally just Copy&Pasted the tutorials there into this unified shell-script, added some comment lines and uploaded it to GitHub for easy access... thats it.
 # Everyone whith experience in IT, especially OpenSource and/or Linux should be able to do the same. Thats no special skill. Combined with an engineering-
 # spirit and the general ability to read thats all you need ;-) Go ask the Linux and/or IoT Comunity for help. They are great!
+# UPDATE: I changed the script to instead use the non distro dependent way of installing via a convenience-script
 echo "Script for installing Docker CE and Portainer to a Debian like Ubuntu 18.04"
 
 # Instaling Docker
@@ -16,14 +17,8 @@ echo "Script for installing Docker CE and Portainer to a Debian like Ubuntu 18.0
 sudo apt update #&& sudo apt upgrade -y
 # Next, install a few prerequisite packages which let apt use packages over HTTPS:
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
-# Then add the GPG key for the official Docker repository to your system:
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-# Add the Docker repository to APT sources:
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-# Next, update the package database with the Docker packages from the newly added repo:
-sudo apt update -y
-# Finally, install Docker:
-sudo apt install docker-ce -y
+# Installing docker the non distro dependent way with a convenience script
+curl -fsSL https://get.docker.com/ | sh
 # Adding current user to docker group
 sudo usermod -aG docker ${USER}
 
