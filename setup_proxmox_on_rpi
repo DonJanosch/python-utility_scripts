@@ -1,0 +1,22 @@
+curl https://sh.rustup.rs -sSf | sh
+apt install libclang-dev llvm gcc g++ clang-7 libacl1-dev libpam-dev libfuse3-dev python-docutils python-sphinx libudev-dev libssl-dev
+cd /usr/src
+git clone git.proxmox.com/git/proxmox-backup.git --branch v0.8.9
+cd /usr/src/proxmox-backup
+wget "https://aur.archlinux.org/cgit/aur.git/plain/0001-adapt-cargo-toml-and-remove-systemd-linking.patch?h=proxmox-backup-client"
+wget "https://aur.archlinux.org/cgit/aur.git/plain/0002-remove-apt-dependency.patch?h=proxmox-backup-client"
+patch --forward --strip=1 --input=0001-adapt-cargo-toml-and-remove-systemd-linking.patch\?h=proxmox-backup-client
+patch --forward --strip=1 --input=0002-remove-apt-dependency.patch\?h=proxmox-backup-client
+cargo build --release --bin proxmox-backup-client --bin pxar --bin dump-catalog-shell-cli
+cd docs
+BUILD_MODE=release make proxmox-backup-client.1 pxar.1
+cd ..
+
+cp target/release/proxmox-backup-client /usr/local/bin/proxmox-backup-client
+cp target/release/pxar /usr/local/bin/pxar
+cp docs/proxmox-backup-client.1 /usr/local/share/man/proxmox-backup-client.1
+cp docs/pxar.1 /usr/local/share/man/pxar.1
+cp debian/proxmox-backup-client.bc /usr/share/bash-completion/completions/proxmox-backup-client
+cp debian/pxar.bc /usr/share/bash-completion/completions/pxar
+cp zsh-completions/_proxmox-backup-client /usr/local/share/zsh/site-functions/_proxmox-backup-client
+cp zsh-completions/_pxar /usr/local/share/zsh/site-functions_pxar
